@@ -22,7 +22,7 @@ _T: dict[str, dict[str, str]] = {
     "export_tip": {"es": "Descifrar y extraer en {dest} (Ctrl+E)", "en": "Decrypt and unpack into {dest} (Ctrl+E)"},
     "open_folder": {"es": "Abrir carpeta", "en": "Open folder"},
     "open_folder_tip": {"es": "Abrir {dest}", "en": "Open {dest}"},
-    "lang_tip": {"es": "Switch to English", "en": "Cambiar a español"},
+    "lang_tip": {"es": "Idioma: español. Clic para cambiar a inglés", "en": "Language: English. Click to switch to Spanish"},
     # Lista
     "col_file": {"es": "Archivo", "en": "File"},
     "col_type": {"es": "Contenido", "en": "Content"},

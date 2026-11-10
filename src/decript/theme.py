@@ -153,6 +153,46 @@ def icon(name: str, color: str, size: int = 20, disabled: str | None = None) -> 
     return result
 
 
+_FLAGS = {
+    # Bandera del idioma en uso
+    "es": (
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">'
+        '<rect width="60" height="40" fill="#AA151B"/><rect y="10" width="60" height="20" fill="#F1BF00"/></svg>'
+    ),
+    "en": (
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">'
+        '<rect width="60" height="40" fill="#012169"/>'
+        '<path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/>'
+        '<path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3"/>'
+        '<path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="13"/>'
+        '<path d="M30 0v40M0 20h60" stroke="#C8102E" stroke-width="7"/></svg>'
+    ),
+}
+
+
+def flag(lang: str, width: int = 27, height: int = 18) -> QIcon:
+    """Bandera con esquinas redondeadas para el botón de idioma."""
+    from PySide6.QtCore import QRectF
+    from PySide6.QtGui import QPainterPath
+
+    renderer = QSvgRenderer(QByteArray(_FLAGS[lang].encode()))
+    result = QIcon()
+    for scale in (1, 2):
+        w, h = width * scale, height * scale
+        pix = QPixmap(QSize(w, h))
+        pix.fill(Qt.GlobalColor.transparent)
+        painter = QPainter(pix)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        clip = QPainterPath()
+        clip.addRoundedRect(QRectF(0, 0, w, h), 3.5 * scale, 3.5 * scale)
+        painter.setClipPath(clip)
+        renderer.render(painter, QRectF(0, 0, w, h))
+        painter.end()
+        pix.setDevicePixelRatio(scale)
+        result.addPixmap(pix)
+    return result
+
+
 def app_icon() -> QIcon:
     """Ícono de la app: candado abierto sobre fondo cian."""
     svg = (

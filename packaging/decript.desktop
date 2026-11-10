@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=decript
+GenericName=age backup decryptor
+GenericName[es]=Descifrador de copias de seguridad age
+Comment=Decrypt and unpack age-encrypted backups
+Comment[es]=Descifra y extrae copias de seguridad cifradas con age
+Exec=decript %F
+Icon=decript
+Terminal=false
+Categories=Utility;Archiving;Security;
+Keywords=age;decrypt;backup;descifrar;
+StartupWMClass=decript
